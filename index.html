@@ -11,6 +11,7 @@
 <meta property="og:image" content="kera-raven-logo.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preload" as="image" href="kera-raven-logo.png">
+<link rel="preload" as="image" href="kera-raven-neon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
@@ -18,11 +19,22 @@
 </head>
 <body>
 <div class="bg" aria-hidden="true"></div>
+<div class="neon-flow" aria-hidden="true"><div class="neon-band nb1"><i></i></div><div class="neon-band nb2"><i></i></div><div class="neon-band nb3"><i></i></div></div>
 <div class="veil" aria-hidden="true"></div>
 
 <main class="wrap">
   <header class="head">
-    <img class="logo" src="kera-raven-logo.png" width="320" height="305" alt="KERA RAVEN raven monogram logo">
+    <!-- Logo is assembled from three clipped copies of the same PNG (left wing, right wing, core) -->
+    <div class="logo-animation logo" role="img" aria-label="KERA RAVEN raven monogram logo">
+      <div class="logo-fx">
+      <div class="logo-breathe">
+        <img class="logo-layer logo-wing-left" src="kera-raven-logo.png" width="640" height="611" alt="" aria-hidden="true" decoding="async">
+        <img class="logo-layer logo-wing-right" src="kera-raven-logo.png" width="640" height="611" alt="" aria-hidden="true" decoding="async">
+        <img class="logo-layer logo-symbol" src="kera-raven-logo.png" width="640" height="611" alt="" aria-hidden="true" decoding="async">
+        <i class="logo-flash" aria-hidden="true"></i>
+      </div>
+      </div>
+    </div>
     <h1 class="name">KERA RAVEN</h1>
     <p class="tag">GAMING • CREATOR • LIFESTYLE</p>
     <div class="divider" aria-hidden="true"><span></span><b>KRVN</b><span></span></div>
