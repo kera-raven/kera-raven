@@ -30,8 +30,8 @@ body{margin:0;min-height:100vh;min-height:100dvh;background:transparent;color:va
 
 nav{width:100%}
 .links{list-style:none;margin:0;padding:0;display:grid;gap:12px;width:100%}
-.links li{transition:filter .3s ease;animation:rise 1s calc(1.4s + var(--i)*.12s) ease both}
-.link{position:relative;display:flex;align-items:center;gap:16px;min-height:76px;padding:14px 20px 14px 18px;color:var(--silver);text-decoration:none;isolation:isolate;
+.links li{transition:filter .18s ease;animation:rise 1s calc(1.4s + var(--i)*.12s) ease both}
+.link{touch-action:manipulation;position:relative;display:flex;align-items:center;gap:16px;min-height:76px;padding:14px 20px 14px 18px;color:var(--silver);text-decoration:none;isolation:isolate;
   clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut));
   background:linear-gradient(135deg,#6a6a70,#2a2a2f 45%,#55555a);
   transition:transform .35s cubic-bezier(.2,.7,.2,1),filter .35s;-webkit-tap-highlight-color:transparent}
@@ -60,6 +60,29 @@ nav{width:100%}
   .link:hover .arr{transform:translate(3px,-3px);color:var(--silver)}
   .link:hover::after{left:130%;transition:left .9s ease}
 }
+
+/* ===== Touch / tap neon feedback =====
+   Same red neon as :hover, but for finger presses (:active, keyboard :focus-visible and the
+   .is-pressed class that script.js adds on pointerdown so the flash stays visible for ~0.45s). */
+.link:active,
+.link:focus-visible,
+.links li.is-pressed .link{background:linear-gradient(135deg,#ef1a22,#800e14 45%,#d4151c);transform:translateY(-2px)}
+.link:active::before,
+.link:focus-visible::before,
+.links li.is-pressed .link::before{box-shadow:inset 0 0 14px rgba(239,26,34,.28)}
+.link:active .edge,
+.link:focus-visible .edge,
+.links li.is-pressed .edge{opacity:1;top:12%;bottom:12%}
+.link:active .arr,
+.link:focus-visible .arr,
+.links li.is-pressed .arr{transform:translate(3px,-3px);color:var(--silver)}
+.link:active::after,
+.links li.is-pressed .link::after{left:130%;transition:left .5s ease}
+.links li.is-pressed{filter:drop-shadow(0 0 2px rgba(239,26,34,.9)) drop-shadow(0 0 9px rgba(184,14,20,.55))}
+.links li:has(.link:active),
+.links li:has(.link:focus-visible){filter:drop-shadow(0 0 2px rgba(239,26,34,.9)) drop-shadow(0 0 9px rgba(184,14,20,.55))}
+/* keep the silver keyboard outline from fighting the red border */
+.link:focus-visible{outline-color:rgba(229,229,229,.8)}
 
 .foot{margin-top:30px;font-size:.66rem;letter-spacing:.3em;color:#5f5f64;text-align:center;animation:rise 1s 2.1s ease both}
 .foot span{color:var(--red-d);margin:0 .7em;font-size:.55rem}
@@ -138,6 +161,11 @@ nav{width:100%}
   .link{min-height:72px;gap:12px;padding:12px 16px 12px 14px}
   .ico{width:26px;height:26px;margin-left:4px}
   .txt strong{font-size:1.15rem;letter-spacing:.17em}
+}
+/* ===== Mobile frame: ~5% side gutters so borders + outer neon glow are fully visible ===== */
+@media (max-width:480px){
+  .wrap{width:90%;max-width:680px;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  .links{gap:14px}
 }
 @media (max-height:700px) and (min-width:600px){.wrap{justify-content:flex-start}}
 @media (prefers-reduced-motion:reduce){
